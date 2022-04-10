@@ -33,23 +33,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                    @foreach($list as $data)
-                      <tr id="cart_box{{$data->attr_id}}">
-                        <td><a class="remove" href="javascript:void(0)" onclick="deleteCartProduct('{{$data->pid}}','{{$data->size}}','{{$data->color}}','{{$data->attr_id}}')"><fa class="fa fa-close"></fa></a></td>
-                        <td><a href="{{url('product/'.$data->slug)}}"><img src="{{asset('storage/media/'.$data->image)}}" alt="img"></a></td>
-                        <td><a class="aa-cart-title" href="{{url('product/'.$data->slug)}}">{{$data->name}}</a>
-                        @if($data->size!='')
-                        <br/>SIZE: {{$data->size}}
-                        @endif
-                        @if($data->color!='')
-                        <br/>COLOR: {{$data->color}}
-                        @endif
-                        </td>
-                        <td>Rs {{$data->price}}</td>
-                        <td><input id="qty{{$data->attr_id}}" class="aa-cart-quantity" type="number" value="{{$data->qty}}" onchange="updateQty('{{$data->pid}}','{{$data->size}}','{{$data->color}}','{{$data->attr_id}}','{{$data->price}}')"></td>
-                        <td id="total_price_{{$data->attr_id}}">Rs {{$data->price*$data->qty}}</td>
-                      </tr>
-                      @endforeach
+                   
                       <tr>
                         <td colspan="6" class="aa-cart-view-bottom">
                           
