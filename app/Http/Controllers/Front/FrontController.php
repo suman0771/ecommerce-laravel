@@ -60,21 +60,6 @@ class FrontController extends Controller
                 ->get();
         }
 
-        $result['home_tranding_product'][$list->id] =
-            DB::table('products')
-            ->where(['status' => 1])
-            ->where(['is_tranding' => 1])
-            ->get();
-
-        foreach ($result['home_tranding_product'][$list->id] as $list1) {
-            $result['home_tranding_product_attr'][$list1->id] =
-                DB::table('products_attr')
-                ->leftJoin('sizes', 'sizes.id', '=', 'products_attr.size_id')
-                ->leftJoin('colors', 'colors.id', '=', 'products_attr.color_id')
-                ->where(['products_attr.products_id' => $list1->id])
-                ->get();
-        }
-
         $result['home_discounted_product'][$list->id] =
             DB::table('products')
             ->where(['status' => 1])
@@ -83,6 +68,21 @@ class FrontController extends Controller
 
         foreach ($result['home_discounted_product'][$list->id] as $list1) {
             $result['home_discounted_product_attr'][$list1->id] =
+                DB::table('products_attr')
+                ->leftJoin('sizes', 'sizes.id', '=', 'products_attr.size_id')
+                ->leftJoin('colors', 'colors.id', '=', 'products_attr.color_id')
+                ->where(['products_attr.products_id' => $list1->id])
+                ->get();
+        }
+        
+         $result['home_tranding_product'][$list->id] =
+            DB::table('products')
+            ->where(['status' => 1])
+            ->where(['is_tranding' => 1])
+            ->get();
+
+        foreach ($result['home_tranding_product'][$list->id] as $list1) {
+            $result['home_tranding_product_attr'][$list1->id] =
                 DB::table('products_attr')
                 ->leftJoin('sizes', 'sizes.id', '=', 'products_attr.size_id')
                 ->leftJoin('colors', 'colors.id', '=', 'products_attr.color_id')
